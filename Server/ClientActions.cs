@@ -12,17 +12,15 @@ namespace MinimalGameServer.Actions
             ClientRequest? req;
             try
             {
-                req = null;
                 req = JsonConvert.DeserializeObject<ClientRequest>(json);
             }
-            catch (JsonException x) 
+            catch (JsonException x)
             {
-
                 Console.WriteLine("Invalid ClientRequest Json: " + x.Message);
-                return new (ServerRequestType.Error, "Invalid ClientRequest Json");
+                return new(ServerRequestType.Error, "Invalid ClientRequest Json");
             }
 
-            if ( !await ServerActions.IsPlayerOnline(req.Player))
+            if (!await ServerActions.IsPlayerOnline(req.Player))
             {
                 if (req.RequestType == ClientRequestType.Login)
                 {
@@ -34,27 +32,31 @@ namespace MinimalGameServer.Actions
             {
                 case ClientRequestType.Login:
                     break;
+
                 case ClientRequestType.Logout:
                     break;
+
                 case ClientRequestType.Message:
                     return await PostMessage(req);
+
                 default:
                     break;
             }
             Console.WriteLine("Received bad request");
             return new(ServerRequestType.Error, "Something went wrong in ClientAction");
         }
+
         public static async Task<ServerRequest> PostMessage(ClientRequest req)
         {
             PlayerMessage msg;
             try
             {
-                 msg = JsonConvert.DeserializeObject<PlayerMessage>(req.JsonContent);
+                msg = JsonConvert.DeserializeObject<PlayerMessage>(JsonConvert.SerializeObject(req.Content)); //Needed to cast it properly, as it was serialized
             }
-            catch (JsonException) 
+            catch (Exception)
             {
-                Console.WriteLine("Invalid PlayerMessage Json");
-                return new(ServerRequestType.Error, "Invalid PlayerMessage Json");
+                Console.WriteLine("ClientRequest content didn't cast properly");
+                return new(ServerRequestType.Error, "ClientRequest content didn't cast properly");
             }
             Console.WriteLine($"{TimeSpan.FromSeconds(msg.TimeSent)} {req.Player.Name}: {msg.Content}");
             return new(ServerRequestType.Ok, "Message posted");

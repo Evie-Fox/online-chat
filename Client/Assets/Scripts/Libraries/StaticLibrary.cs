@@ -8,10 +8,10 @@ public class StaticLibrary
     {
         public float TimeSent;
         public string Content;
-        public PlayerMessage(float TimeSent, string Content) 
+        public PlayerMessage(float timeSent, string content) 
         {
-            this.TimeSent = TimeSent;
-            this.Content = Content;
+            TimeSent = timeSent;
+            Content = content;
         }
     }
     [Serializable]
@@ -39,13 +39,13 @@ public class StaticLibrary
     {
         public ClientRequestType RequestType;
         public Player Player;
-        public string JsonContent;
+        public object? Content;
 
-        public ClientRequest(ClientRequestType requestType, Player player, string jsonContent)
+        public ClientRequest(ClientRequestType requestType, Player player, object? content)
         {
             RequestType = requestType;
             Player = player;
-            JsonContent = jsonContent;
+            Content = content;
         }
     }
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qWxisEH6oKY=",
+  "dgSpecHash": "HK1T/AWR7tM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\MinimalGameServer.csproj",
+  "projectFilePath": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\MinimalGameServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Felix\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],

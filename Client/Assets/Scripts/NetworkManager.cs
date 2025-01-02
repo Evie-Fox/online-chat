@@ -55,6 +55,7 @@ public class NetworkManager : MonoBehaviour
 
         while (ws.State == WebSocketState.Open)
         {
+            Array.Clear(buffer, 0, 1024 * bufferByteSize);
             //WebSocketReceiveResult results = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
             WebSocketReceiveResult results = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
 
@@ -103,7 +104,9 @@ public class NetworkManager : MonoBehaviour
 
     public async Task SendWS(ClientRequest req)
     {
-        byte[] bytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(req));
+        string json = JsonConvert.SerializeObject(req);
+        byte[] bytes = Encoding.UTF8.GetBytes(json);
+        print(" \n" + json + "\n" + Encoding.UTF8.GetString(bytes));
         await ws.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
     }
 
@@ -155,7 +158,7 @@ public class NetworkManager : MonoBehaviour
         return null;
         */
         PlayerMessage msg = new(Time.time, text);
-        ClientRequest req = new(ClientRequestType.Message, GameManager.PLAYER, JsonConvert.SerializeObject(msg));
+        ClientRequest req = new(ClientRequestType.Message, GameManager.PLAYER, msg);
         await SendWS(req);
     }
 

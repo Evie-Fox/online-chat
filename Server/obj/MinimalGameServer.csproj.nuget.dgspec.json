@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\MinimalGameServer.csproj": {}
+    "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\MinimalGameServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\MinimalGameServer.csproj": {
+    "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\MinimalGameServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\MinimalGameServer.csproj",
+        "projectUniqueName": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\MinimalGameServer.csproj",
         "projectName": "MinimalGameServer",
-        "projectPath": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\MinimalGameServer.csproj",
+        "projectPath": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\MinimalGameServer.csproj",
         "packagesPath": "C:\\Users\\Felix\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\obj\\",
+        "outputPath": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Felix\\AppData\\Roaming\\NuGet\\NuGet.Config",

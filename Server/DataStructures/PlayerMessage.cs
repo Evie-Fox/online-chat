@@ -4,10 +4,10 @@
     {
         public float TimeSent { get; set; }
         public string Content { get; set; }
-        public PlayerMessage(float TimeSent, string Content)
+        public PlayerMessage(float timeSent, string content)
         {
-            this.TimeSent = TimeSent;
-            this.Content = Content;
+            TimeSent = timeSent;
+            Content = content;
         }
     }
 

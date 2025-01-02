@@ -2,16 +2,16 @@
 {
     public class ClientRequest
     {
-        public ClientRequest(ClientRequestType requestType, Player player, string jsonContent = "")
+        public ClientRequest(ClientRequestType requestType, Player player, object? content)
         {
             RequestType = requestType;
             Player = player;
-            JsonContent = jsonContent;
+            Content = content;
         }
 
         public ClientRequestType RequestType { get; private set; }
         public Player Player { get; private set; }
-        public string JsonContent { get; private set; }
+        public object? Content { get; private set; }
 
     }
 

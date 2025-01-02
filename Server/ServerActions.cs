@@ -62,7 +62,8 @@ namespace MinimalGameServer.Actions
 
                 byte[] response = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(req));
                 await ws.SendAsync(new ArraySegment<byte>(response), WebSocketMessageType.Text, true, ct);//NEED MORE CONTEXT!!!
-                
+
+                Array.Clear(buffer, 0, 1024 * bufferByteSize);
                 results = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
             }
 

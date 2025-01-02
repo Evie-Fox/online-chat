@@ -1,42 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\",
+  "WorkspaceRootPath": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\clientactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\desktop\\online-chat\\server\\clientactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:clientactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\serveractions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:serveractions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\serverdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:serverdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\datastructures\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:datastructures\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\datastructures\\clientplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:datastructures\\clientplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\datastructures\\clientrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:datastructures\\clientrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\datastructures\\serverrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:datastructures\\serverrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\datastructures\\playermessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\desktop\\online-chat\\server\\datastructures\\playermessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:datastructures\\playermessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\source\\repos\\minimalgameserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\desktop\\online-chat\\server\\serveractions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:serveractions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|c:\\users\\felix\\desktop\\online-chat\\server\\datastructures\\clientrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{830F7A6D-20AD-4DAB-9AAE-AD82AEBCB7F9}|MinimalGameServer.csproj|solutionrelative:datastructures\\clientrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,118 +34,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ServerRequest.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\ServerRequest.cs",
-              "RelativeDocumentMoniker": "DataStructures\\ServerRequest.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\ServerRequest.cs",
-              "RelativeToolTip": "DataStructures\\ServerRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAABQAAAA",
+              "DocumentIndex": 1,
+              "Title": "PlayerMessage.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\DataStructures\\PlayerMessage.cs",
+              "RelativeDocumentMoniker": "DataStructures\\PlayerMessage.cs",
+              "ToolTip": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\DataStructures\\PlayerMessage.cs",
+              "RelativeToolTip": "DataStructures\\PlayerMessage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-31T15:16:50.538Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ClientRequest.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\ClientRequest.cs",
-              "RelativeDocumentMoniker": "DataStructures\\ClientRequest.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\ClientRequest.cs",
-              "RelativeToolTip": "DataStructures\\ClientRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAABhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T17:10:33.884Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ClientPlayer.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\ClientPlayer.cs",
-              "RelativeDocumentMoniker": "DataStructures\\ClientPlayer.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\ClientPlayer.cs",
-              "RelativeToolTip": "DataStructures\\ClientPlayer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA5AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T16:59:43.798Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\Player.cs",
-              "RelativeDocumentMoniker": "DataStructures\\Player.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\Player.cs",
-              "RelativeToolTip": "DataStructures\\Player.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T11:29:53.07Z",
+              "WhenOpened": "2025-01-02T18:16:13.617Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ServerData.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\ServerData.cs",
-              "RelativeDocumentMoniker": "ServerData.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\ServerData.cs",
-              "RelativeToolTip": "ServerData.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA9AAAA",
+              "Title": "ServerActions.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\ServerActions.cs",
+              "RelativeDocumentMoniker": "ServerActions.cs",
+              "ToolTip": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\ServerActions.cs",
+              "RelativeToolTip": "ServerActions.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAABAwDoAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T12:56:34.14Z",
+              "WhenOpened": "2025-01-02T17:53:17.061Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ServerActions.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\ServerActions.cs",
-              "RelativeDocumentMoniker": "ServerActions.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\ServerActions.cs",
-              "RelativeToolTip": "ServerActions.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAADwvzoAAAA7AAAA",
+              "DocumentIndex": 3,
+              "Title": "ClientRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\DataStructures\\ClientRequest.cs",
+              "RelativeDocumentMoniker": "DataStructures\\ClientRequest.cs",
+              "ToolTip": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\DataStructures\\ClientRequest.cs",
+              "RelativeToolTip": "DataStructures\\ClientRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAABSAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T11:42:21.943Z",
+              "WhenOpened": "2025-01-02T17:35:18.308Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ClientActions.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\ClientActions.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\ClientActions.cs",
               "RelativeDocumentMoniker": "ClientActions.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\ClientActions.cs",
+              "ToolTip": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\ClientActions.cs",
               "RelativeToolTip": "ClientActions.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAqwAkAAAAmAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAADUAAACgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-24T10:17:35.765Z",
+              "WhenOpened": "2025-01-02T17:33:59.547Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PlayerMessage.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\PlayerMessage.cs",
-              "RelativeDocumentMoniker": "DataStructures\\PlayerMessage.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\DataStructures\\PlayerMessage.cs",
-              "RelativeToolTip": "DataStructures\\PlayerMessage.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T14:56:30.655Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Felix\\source\\repos\\MinimalGameServer\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAywEUAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T14:51:10.109Z"
             }
           ]
         }
