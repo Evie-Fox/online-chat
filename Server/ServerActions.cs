@@ -58,17 +58,34 @@ namespace MinimalGameServer.Actions
 
                 ServerRequest req = await ClientActions.ClientAction(content, ws);
 
-                Console.WriteLine("Response: " + req.RequestType.ToString());
+                //Console.WriteLine("Response: " + req.RequestType.ToString());
 
                 byte[] response = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(req));
                 await ws.SendAsync(new ArraySegment<byte>(response), WebSocketMessageType.Text, true, ct);//NEED MORE CONTEXT!!!
 
                 Array.Clear(buffer, 0, 1024 * bufferByteSize);
+
                 results = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
             }
 
             await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing connection", ct);
             Console.WriteLine("WebSocket closed");
+        }
+        public static async Task SendToAll(ServerRequest req)
+        {
+            int count = 0;
+            foreach (ClientPlayer client in ServerData.PlayerDict.Values) 
+            {
+                if (client.WebSocket == null) continue;
+                await SendWs(req,client.WebSocket);
+                count++;
+            }
+            Console.WriteLine($"Sent ServerRequest to {count} users");
+        }
+        public static async Task SendWs(ServerRequest req, WebSocket ws)
+        {
+            string json = JsonConvert.SerializeObject(req);
+            await ws.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(json)),WebSocketMessageType.Text,true, CancellationToken.None);
         }
     }
 }

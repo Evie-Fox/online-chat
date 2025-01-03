@@ -1,6 +1,6 @@
+using Newtonsoft.Json;
 using System;
 using System.Linq;
-using UnityEngine;
 
 public class StaticLibrary
 {
@@ -9,10 +9,25 @@ public class StaticLibrary
     {
         public float TimeSent;
         public string Content;
-        public PlayerMessage(float timeSent, string content) 
+        public string Author;
+        public PlayerMessage()
+        {
+            TimeSent = -1;
+            Content = "No content";
+            Author = "Unknown";
+        }
+        public PlayerMessage(Player player,float timeSent, string content) 
         {
             TimeSent = timeSent;
             Content = content;
+            Author = player.Name;
+        }
+        [JsonConstructor]
+        public PlayerMessage(string Author, float TimeSent, string Content)
+        {
+            this.Author = Author;
+            this.TimeSent = TimeSent;
+            this.Content = Content;
         }
     }
     [Serializable]

@@ -17,5 +17,6 @@
     {
         Ok = 0,
         Error = 1,
+        NewMessage = 2,
     }
 }

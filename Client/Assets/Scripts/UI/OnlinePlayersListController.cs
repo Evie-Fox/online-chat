@@ -19,6 +19,7 @@ public class OnlinePlayersListController : MonoBehaviour
     }
     private async void CheckForOnlinePlayersLoop()
     {
+        return;
         while (!Application.exitCancellationToken.IsCancellationRequested)
         {
             await Task.Delay(msUpdateDelay);

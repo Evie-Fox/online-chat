@@ -51,14 +51,17 @@ namespace MinimalGameServer.Actions
             PlayerMessage msg;
             try
             {
-                msg = JsonConvert.DeserializeObject<PlayerMessage>(JsonConvert.SerializeObject(req.Content)); //Needed to cast it properly, as it was serialized
+                string json = JsonConvert.SerializeObject(req.Content);
+                msg = JsonConvert.DeserializeObject<PlayerMessage> (json); //Needed to cast it properly, as it was serialized
             }
-            catch (Exception)
+            catch (Exception x)
             {
                 Console.WriteLine("ClientRequest content didn't cast properly");
                 return new(ServerRequestType.Error, "ClientRequest content didn't cast properly");
             }
-            Console.WriteLine($"{TimeSpan.FromSeconds(msg.TimeSent)} {req.Player.Name}: {msg.Content}");
+            //Console.WriteLine($"{TimeSpan.FromSeconds(msg.TimeSent)} {req.Player.Name}: {msg.Content}");
+            await ServerActions.SendToAll(new ServerRequest(ServerRequestType.NewMessage, msg));
+
             return new(ServerRequestType.Ok, "Message posted");
         }
 

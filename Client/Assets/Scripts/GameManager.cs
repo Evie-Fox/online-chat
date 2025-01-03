@@ -28,4 +28,8 @@ public class GameManager : MonoBehaviour
             NetworkManager.Instance.LogIn(PLAYER);
         }
     }
+    public void WriteMessasgeOnBoard(PlayerMessage message)
+    {
+        print($"{message.TimeSent.ToString("F2")},{message.Author}: {message.Content}");
+    }
 }

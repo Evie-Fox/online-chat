@@ -11,9 +11,12 @@ using static StaticLibrary;
 public class NetworkManager : MonoBehaviour
 {
     public static NetworkManager Instance;
+    private GameManager _gameMan;
 
     public bool LoggedIn = false;
     public ClientWebSocket ws;
+
+    [SerializeField] private bool DEBUG = false;
 
     private const string URL = "wss://localhost:7109/ws";
     private Uri uri;
@@ -27,12 +30,13 @@ public class NetworkManager : MonoBehaviour
 
     private async void Init()
     {
+        _gameMan = GetComponent<GameManager>();
         ws = new ClientWebSocket();
         uri = new Uri(URL);
         try
         {
             await ws.ConnectAsync(uri, CancellationToken.None);
-            Console.WriteLine("Connected to websocket");
+            print("Connected to websocket");
             await WebSocketHandler(ws);
         }
         catch (WebSocketException e)
@@ -86,6 +90,9 @@ public class NetworkManager : MonoBehaviour
                     case ServerRequestType.Error:
                         print($"Server: ERROR, {req.Content}");
                         break;
+                    case ServerRequestType.NewMessage:
+                        _gameMan.WriteMessasgeOnBoard(JsonConvert.DeserializeObject<PlayerMessage>(JsonConvert.SerializeObject(req.Content)));
+                        break;
                     default:
                         print("Something went wrong with the ServerRequest");
                         break;
@@ -104,7 +111,10 @@ public class NetworkManager : MonoBehaviour
     {
         string json = JsonConvert.SerializeObject(req);
         byte[] bytes = Encoding.UTF8.GetBytes(json);
-        print(" \n" + json + "\n" + Encoding.UTF8.GetString(bytes));
+        if (DEBUG)
+        {
+            print(" \n" + json + "\n" + Encoding.UTF8.GetString(bytes));
+        }
         await ws.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
     }
 
@@ -120,11 +130,11 @@ public class NetworkManager : MonoBehaviour
 
     public async Task PostMessage(string text = "This is a test msg")
     {
-        PlayerMessage msg = new(Time.time, text);
+        PlayerMessage msg = new(GameManager.PLAYER,Time.time, text);
         ClientRequest req = new(ClientRequestType.Message, GameManager.PLAYER, msg);
         await SendWS(req);
     }
-
+    
     public async Task<string[]> GetPlayersOnline()
     {
         UnityWebRequest req = new(); 
