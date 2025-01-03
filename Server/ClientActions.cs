@@ -72,13 +72,6 @@ namespace MinimalGameServer.Actions
                 Console.WriteLine($"ID is taken. ID:{client.Player.Id}");
                 return new(ServerRequestType.Error, "ID is already in use");
             }
-            /*
-            if (players[i].Name == newPlayer.Name)
-            {
-                Console.WriteLine($"The name \"{newPlayer.Name}\" is already taken.");
-                return Results.BadRequest("ID is already in use");
-            }
-            */
 
             ServerData.PlayerDict.Add(client.Player.Id, client);
             Console.WriteLine($"Logged in user \"{client.Player.Name}\"");

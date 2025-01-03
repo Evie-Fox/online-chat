@@ -2,7 +2,7 @@
 {
     public class ClientRequest
     {
-        public ClientRequest(ClientRequestType requestType, Player player, object? content)
+        public ClientRequest(ClientRequestType requestType, Player player, object? content = null)
         {
             RequestType = requestType;
             Player = player;

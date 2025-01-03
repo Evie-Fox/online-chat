@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StaticLibrary
 {
+    #nullable enable
     public class PlayerMessage
     {
         public float TimeSent;
@@ -58,9 +59,9 @@ public class StaticLibrary
     public class ServerRequest
     {
         public ServerRequestType RequestType;
-        public string Content;
+        public object? Content;
 
-        public ServerRequest(ServerRequestType requestType, string content = "")
+        public ServerRequest(ServerRequestType requestType, object? content = null)
         {
             RequestType = requestType;
             Content = content;
@@ -71,5 +72,6 @@ public class StaticLibrary
     {
         Ok = 0,
         Error = 1,
+        NewMessage = 2,
     }
 }

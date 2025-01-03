@@ -60,9 +60,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\MinimalGameServer.csproj",
-      "projectName": "MinimalGameServer",
-      "projectPath": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\MinimalGameServer.csproj",
+      "projectUniqueName": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\Server.csproj",
+      "projectName": "Server",
+      "projectPath": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\Server.csproj",
       "packagesPath": "C:\\Users\\Felix\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Felix\\Desktop\\online-chat\\Server\\obj\\",
       "projectStyle": "PackageReference",

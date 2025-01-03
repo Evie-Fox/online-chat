@@ -63,3 +63,68 @@ Client/*.DS_Store
 
 # VS Code (inside Client/)
 Client/*.vscode
+
+# Ignore everything in the Server directory
+Server/
+
+# Allow specific directories and files under Server
+!Server/**/
+
+# Ignore common C# build artifacts and IDE-specific files
+Server/bin/
+Server/obj/
+Server/**/*.user
+Server/**/*.suo
+Server/**/*.userosscache
+Server/**/*.sln.docstates
+Server/.vs/
+Server/TestResults/
+
+# Ignore packages and cache directories
+Server/packages/
+Server/.nuget/
+
+# Ignore log files
+Server/**/*.log
+
+# Ignore temporary and backup files
+Server/**~*
+Server/*.tmp
+Server/*.bak
+Server/*.swp
+Server/*.sln.ide
+
+# Ignore compiled output for IDEs
+Server/**/*.exe
+Server/**/*.dll
+Server/**/*.pdb
+Server/**/*.db
+Server/**/*.cache
+Server/**/*.msi
+Server/**/*.appx
+Server/**/*.iso
+Server/**/*.dmg
+
+# Ignore publish output
+Server/wwwroot/
+Server/PublishOutput/
+
+# Ignore IDE-specific settings
+Server/.idea/
+Server/.vscode/
+Server/.Rider/
+
+# Ignore environment-specific files
+Server/*.env
+Server/appsettings*.json
+
+# Ignore dotnet tools and lock files
+Server/global.json
+Server/.dotnet_tools/
+Server/*.lock.json
+
+# Allow certain files explicitly (if needed)
+!Server/*.config
+!Server/**/*.cs
+!Server/**/*.csproj
+!Server/**/*.sln
