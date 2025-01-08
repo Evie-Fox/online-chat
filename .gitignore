@@ -64,9 +64,6 @@ Client/*.DS_Store
 # VS Code (inside Client/)
 Client/*.vscode
 
-# Ignore everything in the Server directory
-Server/
-
 # Allow specific directories and files under Server
 !Server/**/
 
