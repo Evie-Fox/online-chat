@@ -23,15 +23,13 @@ namespace MinimalGameServer.Actions
             }
             return sb.ToString();
         }
-        public static async Task DisconnectPlayer(string id)
+        public static async Task DisconnectPlayer(ClientPlayer client)
         {
-            if (!ServerData.PlayerDict.TryGetValue(id, out ClientPlayer client))
+            ServerData.PlayerDict.Remove(client.Player.Id);
+            if (client.WebSocket != null)
             {
-                Console.WriteLine($"Player with id {id} was not found");
-                return;
+                await client.WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Disconnected by request", CancellationToken.None);
             }
-            //Disconnect player or something
-            ServerData.PlayerDict.Remove(id);
             Console.WriteLine($"Player {client.Player.Name} was removed");
             return;
         }
@@ -54,11 +52,18 @@ namespace MinimalGameServer.Actions
             {
                 string content = Encoding.UTF8.GetString(buffer);
 
-                Console.WriteLine(content);
+                //Console.WriteLine(content);
 
                 ServerRequest req = await ClientActions.ClientAction(content, ws);
 
+                if (ws.CloseStatus.HasValue) { break; }
+
                 //Console.WriteLine("Response: " + req.RequestType.ToString());
+                if (req.RequestType == ServerRequestType.None)
+                {
+                    Array.Clear(buffer, 0, 1024 * bufferByteSize);
+                    continue;
+                }
 
                 byte[] response = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(req));
                 await ws.SendAsync(new ArraySegment<byte>(response), WebSocketMessageType.Text, true, ct);//NEED MORE CONTEXT!!!
@@ -68,7 +73,11 @@ namespace MinimalGameServer.Actions
                 results = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
             }
 
-            await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing connection", ct);
+            if (ws.State != WebSocketState.Closed)
+            {
+                Console.WriteLine("Uexpected closer, aborting web socket.");
+                ws.Abort();
+            }
             Console.WriteLine("WebSocket closed");
         }
         public static async Task SendToAll(ServerRequest req)
@@ -86,6 +95,12 @@ namespace MinimalGameServer.Actions
         {
             string json = JsonConvert.SerializeObject(req);
             await ws.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(json)),WebSocketMessageType.Text,true, CancellationToken.None);
+        }
+        public static async Task UpdateOnlinePlayerList()
+        {
+            PlayerNames names = await ClientActions.PlayersOnline();
+            ServerRequest req = new (ServerRequestType.PlayerList, names);
+            await SendToAll(req);
         }
     }
 }

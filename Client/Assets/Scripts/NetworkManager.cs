@@ -67,6 +67,7 @@ public class NetworkManager : MonoBehaviour
             {
                 print("WebSocket closed by the server");
                 await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing from server request", ct);
+                LoggedIn = false;
                 return;
             }
 
@@ -91,8 +92,12 @@ public class NetworkManager : MonoBehaviour
                         print($"Server: ERROR, {req.Content}");
                         break;
                     case ServerRequestType.NewMessage:
-                        _gameMan.WriteMessasgeOnBoard(JsonConvert.DeserializeObject<PlayerMessage>(JsonConvert.SerializeObject(req.Content)));
+                        _gameMan.WriteMessageOnBoard(JsonConvert.DeserializeObject<PlayerMessage>(JsonConvert.SerializeObject(req.Content)));
                         break;
+                    case ServerRequestType.PlayerList:
+                        _gameMan.PlayersList.SetOnlinePlayersList(JsonConvert.DeserializeObject<PlayerNames>(JsonConvert.SerializeObject(req.Content)).Names);
+                        break;
+
                     default:
                         print("Something went wrong with the ServerRequest");
                         break;
@@ -126,6 +131,18 @@ public class NetworkManager : MonoBehaviour
     {
         ClientRequest req = new(ClientRequestType.Login, player, null);
         await SendWS(req);
+    }
+
+    public async Task LogOut(Player player)
+    {
+        ClientRequest req = new(ClientRequestType.Logout, player, null);
+        await SendWS(req);
+        if (ws.State != WebSocketState.Closed)
+        {
+            print("Unsuccessful logout");
+            return;
+        }
+        LoggedIn = false;
     }
 
     public async Task PostMessage(string text = "This is a test msg")

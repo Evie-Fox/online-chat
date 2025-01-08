@@ -87,6 +87,8 @@ public class StaticLibrary
     {
         Ok = 0,
         Error = 1,
-        NewMessage = 2,
+        None = 2,
+        NewMessage = 3,
+        PlayerList = 4,
     }
 }

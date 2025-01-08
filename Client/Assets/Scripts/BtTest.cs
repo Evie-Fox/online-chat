@@ -11,6 +11,6 @@ public class BtTest : MonoBehaviour, IPointerDownHandler
 
     public void PostMsg()
     {
-        print("TestThis"!);
+        print("TestThis: " + gameObject.name);
     }
 }

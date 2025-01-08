@@ -31,10 +31,10 @@ namespace MinimalGameServer.Actions
             switch (req.RequestType)
             {
                 case ClientRequestType.Login:
-                    break;
+                    return new(ServerRequestType.Error, "Already logged in");
 
                 case ClientRequestType.Logout:
-                    break;
+                    return await LogOut(req.Player);
 
                 case ClientRequestType.Message:
                     return await PostMessage(req);
@@ -68,7 +68,7 @@ namespace MinimalGameServer.Actions
         public static async Task<ServerRequest> LogIn(ClientPlayer client)
         {
             if (client == null)
-            { throw new ArgumentNullException("Player was null"); }
+            { throw new ArgumentNullException("Player is null"); }
 
             if (await ServerActions.IsPlayerOnline(client.Player))
             {
@@ -78,7 +78,22 @@ namespace MinimalGameServer.Actions
 
             ServerData.PlayerDict.Add(client.Player.Id, client);
             Console.WriteLine($"Logged in user \"{client.Player.Name}\"");
+            ServerActions.UpdateOnlinePlayerList();
             return new(ServerRequestType.Ok, "Login successful");
+        }
+
+        public static async Task<ServerRequest> LogOut(Player player)
+        {
+            if (player == null)
+            { throw new ArgumentNullException("Player is null"); }
+            
+            if (!ServerData.PlayerDict.TryGetValue(player.Id, out ClientPlayer client))
+            {
+                return new(ServerRequestType.Error, "Player is not online");
+            }
+            await ServerActions.DisconnectPlayer(client);
+            ServerActions.UpdateOnlinePlayerList();
+            return new(ServerRequestType.None, $"Player \"{client.Player.Name}\"was disconnected");
         }
 
         public static async Task<PlayerNames> PlayersOnline()
@@ -96,9 +111,5 @@ namespace MinimalGameServer.Actions
             return new PlayerNames(names);
         }
 
-        public static async Task LogOut(Player player)
-        {
-            await ServerActions.DisconnectPlayer(player.Id);
-        }
     }
 }

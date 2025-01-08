@@ -4,26 +4,15 @@ using UnityEngine;
 
 public class OnlinePlayersListController : MonoBehaviour
 {
-    [SerializeField] private int msUpdateDelay;
-
     private TMP_Text _textBox;
 
     private void Awake()
     {
         _textBox = GetComponent<TMP_Text>();
-        if (msUpdateDelay < 1)
-        {
-            throw new UnityException("Online players update delay is too low");
-        }
-        CheckForOnlinePlayersLoop();
     }
-    private async void CheckForOnlinePlayersLoop()
+    
+    public void SetOnlinePlayersList(string[] onlinePlayers)
     {
-        return;
-        while (!Application.exitCancellationToken.IsCancellationRequested)
-        {
-            await Task.Delay(msUpdateDelay);
-            _textBox.text = await NetworkManager.Instance.GetPlayerOnlineString();
-        }
+        _textBox.text = string.Join("\n",onlinePlayers);
     }
 }

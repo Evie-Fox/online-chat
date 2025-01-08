@@ -3,6 +3,7 @@ using MinimalGameServer.Actions;
 using Newtonsoft.Json;
 using System.Net.WebSockets;
 using System.Text;
+using MinimalGameServer;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -48,7 +49,12 @@ var commandTask = Task.Run(async () =>
             case ("removeplayer"):
             case ("disconnectplayer"):
                 Console.WriteLine("Player's ID: ");
-                await ServerActions.DisconnectPlayer(Console.ReadLine());
+                if (ServerData.PlayerDict.TryGetValue(Console.ReadLine(), out ClientPlayer client))
+                {
+                    await ServerActions.DisconnectPlayer(client);
+                    break;
+                }
+                Console.WriteLine("Player ID not found");
 
                 break;
 

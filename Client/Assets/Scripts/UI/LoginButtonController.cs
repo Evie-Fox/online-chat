@@ -28,8 +28,8 @@ public class LoginButtonController : MonoBehaviour, IPointerClickHandler
         if (NetworkManager.Instance.LoggedIn)
         {
             print("LOG OUT!!!");
-            //NetworkManager.Instance.LogOut(GameManager.PLAYER);
-            /*DELETE THIS LATER!!!!*/NetworkManager.Instance.LoggedIn = false;/*FOR REAL!*/
+            await NetworkManager.Instance.LogOut(GameManager.PLAYER);
+            /*DELETE THIS LATER!!!!*///NetworkManager.Instance.LoggedIn = false;/*FOR REAL!*/
             _buttonText.text = LOGINTEXT;
             _inputField.interactable = true;
             return;
