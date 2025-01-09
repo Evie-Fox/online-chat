@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
         PlayersList = FindFirstObjectByType<OnlinePlayersListController>();
     }
 
+    public void ClearPlayersList()
+    {
+        string[] empty = {string.Empty};
+        PlayersList.SetOnlinePlayersList(empty);
+    }
     public void WriteMessageOnBoard(PlayerMessage message)
     {
         _mainTextPanel.WriteMessage(message);

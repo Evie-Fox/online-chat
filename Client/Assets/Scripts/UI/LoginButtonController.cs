@@ -42,15 +42,15 @@ public class LoginButtonController : MonoBehaviour, IPointerClickHandler
 
         _button.interactable = false;
         await NetworkManager.Instance.LogIn(GameManager.Player);
-        _button.interactable = true;
 
-        int waitAmmout = 4;
+        int waitAmmout = 100;
 
         while (!NetworkManager.Instance.LoggedIn && waitAmmout > 0)
         {
-            await Task.Delay(1000);
+            await Task.Delay(25);
             waitAmmout--;
         }
+        _button.interactable = true;
         
         if (NetworkManager.Instance.LoggedIn)
         {

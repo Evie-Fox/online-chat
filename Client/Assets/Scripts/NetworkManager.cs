@@ -136,6 +136,7 @@ public class NetworkManager : MonoBehaviour
     {
         ClientRequest req = new(ClientRequestType.Logout, player, null);
         await SendWS(req);
+        _gameMan.ClearPlayersList();
         return;
 
         //TODO: proper disconnection
