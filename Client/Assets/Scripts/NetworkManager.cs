@@ -97,6 +97,9 @@ public class NetworkManager : MonoBehaviour
                     case ServerRequestType.PlayerList:
                         _gameMan.PlayersList.SetOnlinePlayersList(JsonConvert.DeserializeObject<PlayerNames>(JsonConvert.SerializeObject(req.Content)).Names);
                         break;
+                    case ServerRequestType.LogToggle:
+                        LoggedIn = !LoggedIn;
+                        break;
 
                     default:
                         print("Something went wrong with the ServerRequest");
@@ -123,10 +126,6 @@ public class NetworkManager : MonoBehaviour
         await ws.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
     }
 
-    private async void TestEcho()
-    {
-    }
-
     public async Task LogIn(Player player)
     {
         ClientRequest req = new(ClientRequestType.Login, player, null);
@@ -137,18 +136,27 @@ public class NetworkManager : MonoBehaviour
     {
         ClientRequest req = new(ClientRequestType.Logout, player, null);
         await SendWS(req);
-        if (ws.State != WebSocketState.Closed)
+        return;
+
+        //TODO: proper disconnection
+        int secondsToWait = 5;
+        while (ws.State != WebSocketState.Closed && secondsToWait > 0)
+        {
+            await Task.Delay(1000);
+            secondsToWait--;
+        }
+
+        if (ws.State == WebSocketState.Open)
         {
             print("Unsuccessful logout");
             return;
         }
-        LoggedIn = false;
     }
 
     public async Task PostMessage(string text = "This is a test msg")
     {
-        PlayerMessage msg = new(GameManager.PLAYER,Time.time, text);
-        ClientRequest req = new(ClientRequestType.Message, GameManager.PLAYER, msg);
+        PlayerMessage msg = new(GameManager.Player,Time.time, text);
+        ClientRequest req = new(ClientRequestType.Message, GameManager.Player, msg);
         await SendWS(req);
     }
     

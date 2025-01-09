@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using MinimalGameServer.DataStructures;
+﻿using MinimalGameServer.DataStructures;
 using Newtonsoft.Json;
 using System.Net.WebSockets;
 using System.Text;

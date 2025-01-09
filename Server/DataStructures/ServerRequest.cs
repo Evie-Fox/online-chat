@@ -20,5 +20,6 @@
         None = 2,
         NewMessage = 3,
         PlayerList = 4,
+        LogToggle = 5, //use one value to toggle between on and off
     }
 }

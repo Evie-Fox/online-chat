@@ -1,5 +1,4 @@
 ﻿using MinimalGameServer.DataStructures;
-using MinimalGameServer;
 using Newtonsoft.Json;
 using System.Net.WebSockets;
 
@@ -79,7 +78,7 @@ namespace MinimalGameServer.Actions
             ServerData.PlayerDict.Add(client.Player.Id, client);
             Console.WriteLine($"Logged in user \"{client.Player.Name}\"");
             ServerActions.UpdateOnlinePlayerList();
-            return new(ServerRequestType.Ok, "Login successful");
+            return new(ServerRequestType.LogToggle, "Login successful");
         }
 
         public static async Task<ServerRequest> LogOut(Player player)
@@ -91,9 +90,10 @@ namespace MinimalGameServer.Actions
             {
                 return new(ServerRequestType.Error, "Player is not online");
             }
-            await ServerActions.DisconnectPlayer(client);
+            ServerData.PlayerDict.Remove(player.Id);
+            //await ServerActions.DisconnectPlayer(client); TODO: separate disconnect input
             ServerActions.UpdateOnlinePlayerList();
-            return new(ServerRequestType.None, $"Player \"{client.Player.Name}\"was disconnected");
+            return new(ServerRequestType.LogToggle, $"Player \"{client.Player.Name}\"was logged out");
         }
 
         public static async Task<PlayerNames> PlayersOnline()
