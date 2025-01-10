@@ -47,17 +47,14 @@ namespace MinimalGameServer.Actions
             byte[] buffer = new byte[1024 * bufferByteSize];
             WebSocketReceiveResult results = await ws.ReceiveAsync(buffer, ct);
 
-            while (!results.CloseStatus.HasValue)//why this specifically? 
+            while (!results.CloseStatus.HasValue) 
             {
                 string content = Encoding.UTF8.GetString(buffer);
-
-                //Console.WriteLine(content);
 
                 ServerRequest req = await ClientActions.ClientAction(content, ws);
 
                 if (ws.CloseStatus.HasValue) { break; }
 
-                //Console.WriteLine("Response: " + req.RequestType.ToString());
                 if (req.RequestType == ServerRequestType.None)
                 {
                     Array.Clear(buffer, 0, 1024 * bufferByteSize);
@@ -65,7 +62,7 @@ namespace MinimalGameServer.Actions
                 }
 
                 byte[] response = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(req));
-                await ws.SendAsync(new ArraySegment<byte>(response), WebSocketMessageType.Text, true, ct);//NEED MORE CONTEXT!!!
+                await ws.SendAsync(new ArraySegment<byte>(response), WebSocketMessageType.Text, true, ct);
 
                 Array.Clear(buffer, 0, 1024 * bufferByteSize);
 

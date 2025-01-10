@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static StaticLibrary;
 
 public class LoginButtonController : MonoBehaviour, IPointerClickHandler
 {
@@ -30,7 +29,6 @@ public class LoginButtonController : MonoBehaviour, IPointerClickHandler
     {
         if (NetworkManager.Instance.LoggedIn)
         {
-            print("LOG OUT!!!");
             _button.interactable = false;
             await NetworkManager.Instance.LogOut(GameManager.Player);
             _buttonText.text = LOGINTEXT;

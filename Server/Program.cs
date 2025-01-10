@@ -2,7 +2,6 @@ using MinimalGameServer.DataStructures;
 using MinimalGameServer.Actions;
 using Newtonsoft.Json;
 using System.Net.WebSockets;
-using System.Text;
 using MinimalGameServer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -90,23 +89,6 @@ app.MapGet("/PlayersOnline", async () =>
     string json = JsonConvert.SerializeObject(await ClientActions.PlayersOnline());
     return json;
 });
-/*
-app.MapPost("/LogIn", async (Player player) =>
-{
-    IResult res =  await ClientActions.LogIn(player);
-    return res; 
-});
-app.MapPost("/PostMessage", async (PlayerMessage msg) =>
-{
-    if (msg == null)
-    {
-        return Results.BadRequest("Null object sent");
-    }
-
-    await ClientActions.PostMessage(msg);
-    return Results.Ok("Message received");
-});
-*/
 
 var serverTask = app.RunAsync(cts.Token);
 await Task.WhenAny(serverTask, commandTask);

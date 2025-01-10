@@ -58,7 +58,6 @@ namespace MinimalGameServer.Actions
                 Console.WriteLine("ClientRequest content didn't cast properly");
                 return new(ServerRequestType.Error, "ClientRequest content didn't cast properly");
             }
-            //Console.WriteLine($"{TimeSpan.FromSeconds(msg.TimeSent)} {req.Player.Name}: {msg.Content}");
             await ServerActions.SendToAll(new ServerRequest(ServerRequestType.NewMessage, msg));
 
             return new(ServerRequestType.Ok, "Message posted");
@@ -101,8 +100,6 @@ namespace MinimalGameServer.Actions
             ClientPlayer[] clients = ServerData.PlayerDict.Values.ToArray();
             int count = clients.Count();
             string[] names = new string[count];
-
-            //should this be sorted?
 
             for (int i = 0; i < count; i++)
             {
