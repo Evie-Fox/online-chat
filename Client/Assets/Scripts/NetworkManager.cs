@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Networking;
 using Newtonsoft.Json;
 using static StaticLibrary;
 
@@ -161,24 +160,6 @@ public class NetworkManager : MonoBehaviour
         await SendWS(req);
     }
     
-    public async Task<string[]> GetPlayersOnline()
-    {
-        UnityWebRequest req = new(); 
-        await req.SendWebRequest();
-        if (req.result != UnityWebRequest.Result.Success)
-        {
-            return new string[] { "Dummy list:", "Player 1", "Player 2", "Player 3" };
-        }
-        PlayerNames names = JsonUtility.FromJson<PlayerNames>(req.downloadHandler.text);
-        return names.Names;
-    }
-
-    public async Task<string> GetPlayerOnlineString()
-    {
-        string[] names = await GetPlayersOnline();
-        return "Players online:\n" + String.Join(" \n", names);
-    }
-
     private async void OnApplicationQuit()
     {
         if (ws != null && ws.State == WebSocketState.Open)
