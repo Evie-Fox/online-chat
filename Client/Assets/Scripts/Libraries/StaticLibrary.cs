@@ -7,23 +7,23 @@ public class StaticLibrary
     #nullable enable
     public class PlayerMessage
     {
-        public float TimeSent;
+        public long TimeSent;
         public string Content;
         public string Author;
         public PlayerMessage()
         {
-            TimeSent = -1;
+            TimeSent = DateTimeOffset.UtcNow.Ticks;
             Content = "No content";
             Author = "Unknown";
         }
-        public PlayerMessage(Player player,float timeSent, string content) 
+        public PlayerMessage(Player player,long timeSent, string content) 
         {
             TimeSent = timeSent;
             Content = content;
             Author = player.Name;
         }
         [JsonConstructor]
-        public PlayerMessage(string Author, float TimeSent, string Content)
+        public PlayerMessage(string Author, long TimeSent, string Content)
         {
             this.Author = Author;
             this.TimeSent = TimeSent;

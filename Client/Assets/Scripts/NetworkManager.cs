@@ -155,7 +155,7 @@ public class NetworkManager : MonoBehaviour
 
     public async Task PostMessage(string text = "This is a test msg")
     {
-        PlayerMessage msg = new(GameManager.Player,Time.time, text);
+        PlayerMessage msg = new(GameManager.Player,DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), text);
         ClientRequest req = new(ClientRequestType.Message, GameManager.Player, msg);
         await SendWS(req);
     }

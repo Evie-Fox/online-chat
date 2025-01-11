@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using static StaticLibrary;
@@ -18,6 +19,6 @@ public class MainTextPanelController : MonoBehaviour
             _textBox.text = string.Empty; 
             _isFirstMessage = false;
         }
-        _textBox.text += ($"\n{message.TimeSent.ToString("F2")},{message.Author}: {message.Content}");
+        _textBox.text += ($"\n{DateTimeOffset.FromUnixTimeMilliseconds(message.TimeSent).ToLocalTime().TimeOfDay.ToString(@"hh\:mm\:ss")} - {message.Author}: {message.Content}");
     }
 }
