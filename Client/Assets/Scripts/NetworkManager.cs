@@ -17,8 +17,9 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField] private bool DEBUG = false;
 
-    private const string URL = "wss://localhost:7109/ws";
     private Uri uri;
+    private const string ADDRESSSSTART = "wss://", ADDRESSEND = "/ws";
+
 
     private void Awake()
     {
@@ -31,18 +32,6 @@ public class NetworkManager : MonoBehaviour
     {
         _gameMan = GetComponent<GameManager>();
         ws = new ClientWebSocket();
-        uri = new Uri(URL);
-        try
-        {
-            await ws.ConnectAsync(uri, CancellationToken.None);
-            print("Connected to websocket");
-            await WebSocketHandler(ws);
-        }
-        catch (WebSocketException e)
-        {
-            Console.WriteLine(e.Message);
-            throw;
-        }
     }
 
     public async Task WebSocketHandler(WebSocket ws)
@@ -138,7 +127,32 @@ public class NetworkManager : MonoBehaviour
         _gameMan.ClearPlayersList();
         return;
 
-        //TODO: proper disconnection
+    }
+    public async Task Connect(string address)
+    {
+        uri = new Uri(ADDRESSSSTART + address + ADDRESSEND);
+        try
+        {
+            await ws.ConnectAsync(uri, CancellationToken.None);
+            print("Connected to websocket");
+            await WebSocketHandler(ws);
+        }
+        catch (WebSocketException e)
+        {
+            Console.WriteLine(e.Message);
+            return;
+        }
+        return;
+
+    }
+    public async Task<bool> Disconnect()
+    {
+        if (ws.State != WebSocketState.Open)
+        {
+            print("Web socket is not open");
+            return false;
+        }
+
         int secondsToWait = 5;
         while (ws.State != WebSocketState.Closed && secondsToWait > 0)
         {
@@ -149,8 +163,10 @@ public class NetworkManager : MonoBehaviour
         if (ws.State == WebSocketState.Open)
         {
             print("Unsuccessful logout");
-            return;
+            return false;
         }
+        return true;
+
     }
 
     public async Task PostMessage(string text = "This is a test msg")
