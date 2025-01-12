@@ -29,6 +29,10 @@ namespace MinimalGameServer.Actions
             {
                 await client.WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Disconnected by request", CancellationToken.None);
             }
+            if (client.WebSocket != null)
+            {
+                ServerData.WebSocketDict.Remove(client.WebSocket);
+            }
             Console.WriteLine($"Player {client.Player.Name} was removed");
             return;
         }
@@ -69,8 +73,10 @@ namespace MinimalGameServer.Actions
                 results = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
             }
 
+
             if (ws.State != WebSocketState.Closed)
             {
+                await ServerActions.DisconnectPlayer(ServerData.GetClientFromWs(ws));
                 Console.WriteLine("Uexpected closer, aborting web socket.");
                 ws.Abort();
             }

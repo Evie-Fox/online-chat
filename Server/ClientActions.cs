@@ -68,14 +68,22 @@ namespace MinimalGameServer.Actions
             if (client == null)
             { throw new ArgumentNullException("Player is null"); }
 
+            if (string.IsNullOrWhiteSpace(client.Player.Id))
+            {
+                return new(ServerRequestType.Error, "Invalid name");
+            }
+
             if (await ServerActions.IsPlayerOnline(client.Player))
             {
                 Console.WriteLine($"ID is taken. ID:{client.Player.Id}");
-                return new(ServerRequestType.Error, "ID is already in use");
+                return new(ServerRequestType.Error, "Name is already in use");
             }
 
             ServerData.PlayerDict.Add(client.Player.Id, client);
+            ServerData.WebSocketDict[client.WebSocket] = client.Player.Id;
+
             Console.WriteLine($"Logged in user \"{client.Player.Name}\"");
+
             ServerActions.UpdateOnlinePlayerList();
             return new(ServerRequestType.LogToggle, "Login successful");
         }
@@ -90,7 +98,8 @@ namespace MinimalGameServer.Actions
                 return new(ServerRequestType.Error, "Player is not online");
             }
             ServerData.PlayerDict.Remove(player.Id);
-            //await ServerActions.DisconnectPlayer(client); TODO: separate disconnect input
+            ServerData.WebSocketDict[client.WebSocket] = string.Empty;
+
             ServerActions.UpdateOnlinePlayerList();
             return new(ServerRequestType.LogToggle, $"Player \"{client.Player.Name}\"was logged out");
         }

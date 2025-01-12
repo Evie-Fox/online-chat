@@ -72,7 +72,9 @@ app.Map("/ws", async context =>
     {
         WebSocket ws = await context.WebSockets.AcceptWebSocketAsync();
         Console.WriteLine("WebSocket connected");
+        ServerData.WebSocketDict.Add(ws, string.Empty);
         await ServerActions.WebSocketHandler(ws);
+        ServerData.WebSocketDict.Remove(ws);
         Console.WriteLine("WebSocket closed");
         return;
     }
