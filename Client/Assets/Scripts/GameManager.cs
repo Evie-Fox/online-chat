@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     public OnlinePlayersListController PlayersList;
 
     private MainTextPanelController _mainTextPanel;
+    private NotificationPanelController _notificationPanel;
 
     private void Awake()
     {
         _mainTextPanel = FindFirstObjectByType<MainTextPanelController>();
         PlayersList = FindFirstObjectByType<OnlinePlayersListController>();
+        _notificationPanel = FindFirstObjectByType<NotificationPanelController>();
     }
 
     public void ClearPlayersList()

@@ -1,3 +1,4 @@
+using System.Net.WebSockets;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -26,29 +27,20 @@ public class ServerAddressController : MonoBehaviour, IPointerClickHandler
     {
         if (setDefaultAddress)
         {
-            _button.interactable = false;
-            _inputField.text = _defaultAddress;
-            NetworkManager.Instance.Connect(_defaultAddress);
-
-            int quarterSecondsToWait = 16;
-
-            while (NetworkManager.Instance.ws.State != System.Net.WebSockets.WebSocketState.Open && quarterSecondsToWait > 0)
-            {
-                await Task.Delay(250);
-                quarterSecondsToWait--;
-            }
-            if (NetworkManager.Instance.ws.State == System.Net.WebSockets.WebSocketState.Open)
-            {
-                _buttonText.text = DISCONNECTTEXT;
-            }
-            _button.interactable = true;
+            await ConnectToDefaultAddress();
         }
     }
-
     public async void OnPointerClick(PointerEventData eventData)
     {
+        await ConnectToggle();
+    }
+
+
+
+    private async Task ConnectToggle()
+    {
         _button.interactable = false;
-        if (NetworkManager.Instance.ws.State == System.Net.WebSockets.WebSocketState.Open)
+        if (NetworkManager.Instance.ws != null && NetworkManager.Instance.ws.State == System.Net.WebSockets.WebSocketState.Open)
         {
             if (NetworkManager.Instance.LoggedIn)
             {
@@ -58,23 +50,43 @@ public class ServerAddressController : MonoBehaviour, IPointerClickHandler
             {
                 _buttonText.text = CONNECTTEXT;
             }
+            _inputField.interactable = true;
             _button.interactable = true;
             return;
         }
 
-        NetworkManager.Instance.Connect(_inputField.text);
-
-        int quarterSecondsToWait = 16;
-
-        while (NetworkManager.Instance.ws.State != System.Net.WebSockets.WebSocketState.Open && quarterSecondsToWait > 0)
+        if (string.IsNullOrEmpty(_inputField.text))
         {
-            await Task.Delay(250);
-            quarterSecondsToWait--;
+            NotificationPanelController.Instance.ShowNotification("Invalid server address");
+            _button.interactable = true;
+            return;
         }
+
+
+        await NetworkManager.Instance.Connect(_inputField.text);
+        
         if (NetworkManager.Instance.ws.State == System.Net.WebSockets.WebSocketState.Open)
         {
             _buttonText.text = DISCONNECTTEXT;
+            _inputField.interactable = false;
         }
+        else
+        {
+            NotificationPanelController.Instance.ShowNotification("Server not found");
+        }
+        _button.interactable = true;
+    }
+    private async Task ConnectToDefaultAddress()
+    {
+        _button.interactable = false;
+        _inputField.text = _defaultAddress;
+        await NetworkManager.Instance.Connect(_defaultAddress);
+
+        if (NetworkManager.Instance.ws.State == WebSocketState.Open)
+        {
+            _buttonText.text = DISCONNECTTEXT;
+        }
+
         _button.interactable = true;
     }
 }

@@ -27,9 +27,9 @@ public class LoginButtonController : MonoBehaviour, IPointerClickHandler
 
     public async void OnPointerClick(PointerEventData eventData)
     {
+        _button.interactable = false;
         if (NetworkManager.Instance.LoggedIn)
         {
-            _button.interactable = false;
             await NetworkManager.Instance.LogOut(GameManager.Player);
             _buttonText.text = LOGINTEXT;
             _button.interactable = true;
@@ -38,7 +38,13 @@ public class LoginButtonController : MonoBehaviour, IPointerClickHandler
         }
         GameManager.Player = new(_inputField.text.Trim());
 
-        _button.interactable = false;
+        if (string.IsNullOrEmpty(GameManager.Player.Name))
+        {
+            NotificationPanelController.Instance.ShowNotification("Invalid name");
+            _button.interactable = true;
+            return;
+        }
+
         await NetworkManager.Instance.LogIn(GameManager.Player);
 
         int waitAmmout = 100;

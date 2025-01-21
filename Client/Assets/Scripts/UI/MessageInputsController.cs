@@ -21,11 +21,13 @@ public class MessageInputsController : MonoBehaviour, IPointerDownHandler
     {
         if (!NetworkManager.Instance.LoggedIn)
         {
+            NotificationPanelController.Instance.ShowNotification("Not logged in");
             print("Not logged in");
             return;
         }
         if (string.IsNullOrWhiteSpace(_inputField.text))
         {
+            NotificationPanelController.Instance.ShowNotification("Invalid message");
             print("Invalid message");
             return;
         }
