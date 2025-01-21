@@ -80,8 +80,10 @@ namespace MinimalGameServer.Actions
             }
 
             ServerData.PlayerDict.Add(client.Player.Id, client);
-            ServerData.WebSocketDict[client.WebSocket] = client.Player.Id;
-
+            if (client.WebSocket != null)
+            {
+                ServerData.WebSocketDict[client.WebSocket] = client.Player.Id;
+            }
             Console.WriteLine($"Logged in user \"{client.Player.Name}\"");
 
             ServerActions.UpdateOnlinePlayerList();

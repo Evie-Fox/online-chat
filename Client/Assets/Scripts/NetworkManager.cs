@@ -31,7 +31,6 @@ public class NetworkManager : MonoBehaviour
     private async void Init()
     {
         _gameMan = GetComponent<GameManager>();
-        ws = new ClientWebSocket();
     }
 
     public async Task WebSocketHandler(WebSocket ws)
@@ -78,6 +77,7 @@ public class NetworkManager : MonoBehaviour
                         break;
                     case ServerRequestType.Error:
                         print($"Server: ERROR, {req.Content}");
+                        NotificationPanelController.Instance.ShowNotification($"Server: ERROR, {req.Content}");
                         break;
                     case ServerRequestType.NewMessage:
                         _gameMan.WriteMessageOnBoard(JsonConvert.DeserializeObject<PlayerMessage>(JsonConvert.SerializeObject(req.Content)));
@@ -97,14 +97,14 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public async Task SendWS(string contents)
-    {
-        byte[] bytes = Encoding.UTF8.GetBytes(contents);
-        await ws.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
-    }
-
     public async Task SendWS(ClientRequest req)
     {
+        if (ws.State != WebSocketState.Open)
+        {
+            NotificationPanelController.Instance.ShowNotification("Not connected");
+            return;
+        }
+
         string json = JsonConvert.SerializeObject(req);
         byte[] bytes = Encoding.UTF8.GetBytes(json);
         if (DEBUG)
@@ -131,11 +131,12 @@ public class NetworkManager : MonoBehaviour
     public async Task Connect(string address)
     {
         uri = new Uri(ADDRESSSSTART + address + ADDRESSEND);
+        ws = new ClientWebSocket();
         try
         {
             await ws.ConnectAsync(uri, CancellationToken.None);
             print("Connected to websocket");
-            await WebSocketHandler(ws);
+            WebSocketHandler(ws);
         }
         catch (WebSocketException e)
         {
@@ -153,16 +154,11 @@ public class NetworkManager : MonoBehaviour
             return false;
         }
 
-        int secondsToWait = 5;
-        while (ws.State != WebSocketState.Closed && secondsToWait > 0)
-        {
-            await Task.Delay(1000);
-            secondsToWait--;
-        }
+        await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Normal closure", CancellationToken.None);
 
         if (ws.State == WebSocketState.Open)
         {
-            print("Unsuccessful logout");
+            print("Unsuccessful disconnection");
             return false;
         }
         return true;
