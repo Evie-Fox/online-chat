@@ -61,12 +61,4 @@ public class NotificationPanelController : MonoBehaviour
         await SlideToPos(hiddenPos);
         _midNotification = false;
     }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ShowNotification("Something is wrong");
-        }
-    }
 }

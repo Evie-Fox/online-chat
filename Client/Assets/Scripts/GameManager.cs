@@ -4,7 +4,6 @@ using static StaticLibrary;
 public class GameManager : MonoBehaviour
 {
     public static Player Player;
-    public string TestingText;
     public OnlinePlayersListController PlayersList;
 
     private MainTextPanelController _mainTextPanel;

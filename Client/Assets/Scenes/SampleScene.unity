@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 1191385430}
   - component: {fileID: 1191385432}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Manager holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1806,7 +1806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d18c65cfa8aa1d4799430b2d4c91f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestingText: Hi, step brother.
   PlayersList: {fileID: 0}
 --- !u!4 &1191385431
 Transform:
